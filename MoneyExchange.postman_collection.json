@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "c47b3662-6e39-4214-a317-19505348a508",
+		"name": "MoneyExchange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Local - Get Exchange by profile/date2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"buy\": 3.99,\r\n  \"sell\": 4.02,\r\n  \"date\": \"2022/02/28 09:00:58\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/money-exchange/v1/exchange/LOW?date=2022-02-28",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"money-exchange",
+						"v1",
+						"exchange",
+						"LOW"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2022-02-28"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - Post Exchange",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"buy\": 3.99,\r\n  \"sell\": 4.02,\r\n  \"date\": \"2022/02/28 09:00:58\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/money-exchange/v1/exchange",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"money-exchange",
+						"v1",
+						"exchange"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Local - Get Exchange realtime",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/money-exchange/v1/exchange/realtime",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"money-exchange",
+						"v1",
+						"exchange",
+						"realtime"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

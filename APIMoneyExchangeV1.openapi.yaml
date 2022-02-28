@@ -1,0 +1,118 @@
+openapi: 3.0.1
+info:
+  title: API Money Exchange V1
+  description: API para cambio de divisas.
+  version: '1.0'
+servers:
+  - url: '/money-exchange/v1'
+tags:
+  - name: Money Exchange
+    description: Money Exchange Api
+paths:
+  /exchange:
+    post:
+      tags:
+        - Exchange Money
+      summary: Cambio de moneda
+      operationId: exchangePOST_1
+      requestBody:
+        description: Entrada de informacion
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/DivisaDto'
+        required: true
+      responses:
+        200:
+          description: 'Satisfactorio'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DivisaDto'
+              examples:
+                default:
+                  value: 
+            application/stream+json:
+              schema:
+                type: string
+              example:
+                success: 'true'
+  /exchange/{profile}:
+    get:
+      tags:
+      - Busqueda por perfil y fecha
+      summary: Busqueda por perfil y fecha
+      description: Busqueda por perfil y fecha
+      operationId: exchangeGET_1
+      parameters:
+      - name: date
+        in: query
+        description: la fecha a buscar
+        required: false
+        schema:
+          type: string
+      - name: profile
+        in: path
+        description: level
+        required: true
+        schema:
+          type: string
+      responses:
+        200: 
+          description: Satisfactorio
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Divisa'
+  /exchange/realtime:
+    get:
+      tags:
+      - Lista todos los rates
+      summary: Lista todos los rates
+      description: Lista todos los rates
+      operationId: exchange_GET2
+      responses:
+        200:
+          description: Satisfactorio
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Divisa'
+components:
+  schemas:
+    DivisaDto:
+      title: DivisaDto
+      type: object
+      properties:
+        buy:
+          type: number
+          description: Buy
+          example: 4.5
+        sell:
+          type: number
+          description: Sell
+          example: 3.9
+        date:
+          type: string
+          description: Register datetime
+          example: '2022/02/28 12:59:10'
+      description: Datos de registro divisa.
+    Divisa:
+      title: Divisa
+      type: object
+      properties:
+        sell:
+          type: number
+          description: Sell
+          example: 3.9
+        date:
+          type: string
+          description: Register datetime
+          example: '2022/02/28 12:59:10'
+        moneySymbol:
+          type: string
+          description: Codigo de moneda asociada
+          example: 'PEN'
+      description: Datos de registro divisa.
